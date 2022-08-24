@@ -26,7 +26,13 @@ Route.get('/', async () => {
 
 Route.group(() => {
   Route.resource('/users', 'UsersController')
+
   Route.resource('/permissions', 'PermissionsController')
+  Route.group(() => {
+    Route.resource('/permission', 'GroupPermissionsController')
+  }).prefix('/group')
+
+  
   Route.resource('/roles', 'RolesController')
 
   Route.group(() => {
