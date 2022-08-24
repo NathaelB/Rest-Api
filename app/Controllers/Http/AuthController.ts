@@ -7,7 +7,7 @@ export default class AuthController {
 
 		try {
 			const token = await auth.use('api')
-				.attempt(credentials.email, credentials.password)
+				.attempt(credentials.email, credentials.password, {expiresIn: '1days'})
 			return response.send({
 				user: auth.user,
 				auth: token
