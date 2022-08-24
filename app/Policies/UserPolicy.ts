@@ -24,11 +24,7 @@ export default class UserPolicy extends BasePolicy {
     return permissions.includes('create:user')
   }
 
-  public async update (currentUser: User, user: User) {
-    if (user.isAdmin) {
-      return false
-    }
-
+  public async update (currentUser: User) {
     const permissions: string[] = await HelperPolicy.getPermissions(currentUser)
     return permissions.includes('edit:user')
   }
