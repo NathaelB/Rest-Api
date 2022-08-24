@@ -34,7 +34,6 @@ export default class UserPolicy extends BasePolicy {
       return false
     }
 
-
     const permissions: string[] = await HelperPolicy.getPermissions(currentUser)
     return permissions.includes('delete:user')
   }
