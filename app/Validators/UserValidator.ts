@@ -36,3 +36,19 @@ export class UpdateValidator {
 
   public messages: CustomMessages = {}
 }
+
+export class LoginValidator {
+  constructor(protected ctx: HttpContextContract) {}
+  public schema = schema.create({
+    email: schema.string({ escape: true, trim: true}, [
+      rules.exists({ table: 'users', column: 'email'}),
+    ]),
+    password: schema.string({ trim: true }),
+  })
+
+  public cacheKey = 'user-login'
+
+  public messages: CustomMessages = {
+    'email.exist': 'Email incorrect.'
+  }
+}
