@@ -3,7 +3,8 @@ import User from 'App/Models/User'
 import { StoreValidator, UpdateValidator } from 'App/Validators/UserValidator'
 
 export default class UsersController {
-    public async index ({ response }: HttpContextContract) {
+    public async index ({ response, bouncer }: HttpContextContract) {
+        await bouncer.with('UserPolicy').authorize('viewList')
         const users = await User.query().orderBy('username', 'desc')
         return response.send({
             number: users.length,
@@ -11,12 +12,14 @@ export default class UsersController {
         })
     }
 
-    public async show ({ params, response }: HttpContextContract) {
+    public async show ({ params, response, bouncer }: HttpContextContract) {
+        await bouncer.with('UserPolicy').authorize('view')
         const user = await User.query().where('username', params.id).first()
         return response.send({ user: user })
     }
 
-    public async store ({ request, response }: HttpContextContract) {
+    public async store ({ request, response, bouncer }: HttpContextContract) {
+        await bouncer.with('UserPolicy').authorize('create')
         const data = await request.validate(StoreValidator)
         const user = await User.create(data)
 
@@ -26,7 +29,8 @@ export default class UsersController {
         })
     }
 
-    public async update ({ params, request, response }: HttpContextContract) {
+    public async update ({ params, request, response, bouncer }: HttpContextContract) {
+        await bouncer.with('UserPolicy').authorize('update')
         const user = await User.query().where('username', params.id).first()
         if (!user) return response.send({message: "Utilisateur non existant"})
 
@@ -47,14 +51,11 @@ export default class UsersController {
         })
     }
 
-    public async destroy ({ params, response }: HttpContextContract) {
+    public async destroy ({ params, response, bouncer }: HttpContextContract) {        
         const user = await User.query().where('username', params.id).first()
-
-        if (!user) {
-            return response.send({
-                message: `L'utilisateur ${params.id} est inexistant`
-            })
-        }
+        if (!user) return response.send({ message: `L'utilisateur ${params.id} est inexistant` })
+        
+        await bouncer.with('UserPolicy').authorize('delete', user)
 
         await user.delete()
         return response.send({
