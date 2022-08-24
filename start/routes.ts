@@ -26,4 +26,16 @@ Route.get('/', async () => {
 
 Route.group(() => {
   Route.resource('/users', 'UsersController')
+
+  Route.group(() => {
+    Route.get('/me', 'AuthController.me')
+    Route.delete('/auth/logout', 'AuthController.logout')
+  }).middleware(['auth'])
+
+  Route.group(() => {
+    Route.group(() => {
+      Route.post('/login', 'AuthController.login')
+      Route.post('/register', 'SecuritiesController.store')
+    }).prefix('/auth')
+  }).middleware(['guest'])
 }).prefix('/v1')
