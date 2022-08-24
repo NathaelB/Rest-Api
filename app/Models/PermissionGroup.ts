@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
-import { BaseModel, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
+import { BaseModel, beforeCreate, column, HasMany, hasMany } from '@ioc:Adonis/Lucid/Orm'
 import Permission from './Permission'
+import { randomUUID } from 'crypto'
 
 export default class PermissionGroup extends BaseModel {
   @column({ isPrimary: true })
@@ -17,4 +18,9 @@ export default class PermissionGroup extends BaseModel {
 
   @column.dateTime({ autoCreate: true, autoUpdate: true })
   public updatedAt: DateTime
+
+  @beforeCreate()
+  public static async CreateUUID (model: PermissionGroup) {
+    model.id = randomUUID()
+  }
 }
