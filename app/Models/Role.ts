@@ -1,6 +1,7 @@
 import { DateTime } from 'luxon'
 import { BaseModel, beforeCreate, column, ManyToMany, manyToMany } from '@ioc:Adonis/Lucid/Orm'
 import { randomUUID } from 'crypto'
+import { slugify } from '@ioc:Adonis/Addons/LucidSlugify'
 import Permission from './Permission'
 import User from './User'
 
@@ -10,6 +11,14 @@ export default class Role extends BaseModel {
 
   @column()
   public label: string
+
+  @column()
+  @slugify({
+    strategy: 'dbIncrement',
+    fields: ['label'],
+    allowUpdates: true
+  })
+  public slug: string
 
   @column()
   public power: number
