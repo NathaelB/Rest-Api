@@ -51,7 +51,7 @@ export default class UsersController {
         })
     }
 
-    public async destroy ({ params, response, bouncer }: HttpContextContract) {        
+    public async destroy ({ params, response, bouncer }: HttpContextContract) {
         const user = await User.query().where('username', params.id).first()
         if (!user) return response.send({ message: `L'utilisateur ${params.id} est inexistant` })
         
