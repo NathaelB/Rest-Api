@@ -1,7 +1,9 @@
 import { DateTime } from 'luxon'
 import Hash from '@ioc:Adonis/Core/Hash'
-import { column, beforeSave, BaseModel, beforeCreate } from '@ioc:Adonis/Lucid/Orm'
+import { column, beforeSave, BaseModel, beforeCreate, manyToMany, ManyToMany } from '@ioc:Adonis/Lucid/Orm'
 import { randomUUID } from 'crypto'
+import Permission from './Permission'
+import Role from './Role'
 export default class User extends BaseModel {
   @column({ isPrimary: true })
   public id: string
@@ -20,6 +22,12 @@ export default class User extends BaseModel {
 
   @column()
   public isAdmin: true
+
+  @manyToMany(() => Permission)
+  public permissions: ManyToMany<typeof Permission>
+
+  @manyToMany(() => Role)
+  public roles: ManyToMany<typeof Role>
 
   @column.dateTime({ autoCreate: true })
   public createdAt: DateTime
