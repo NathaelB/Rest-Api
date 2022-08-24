@@ -207,6 +207,14 @@
     abstract-logging "^2.0.1"
     pino "^6.14.0"
 
+"@adonisjs/lucid-slugify@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@adonisjs/lucid-slugify/-/lucid-slugify-2.2.1.tgz#20a70cf6ddf3c8a27d88abdad1bdbd6634cd454a"
+  integrity sha512-l7FUVXbCYlDEAhv3skqOFVgGCXQKp7/NumEJscfxTpPbk6utmJzmxB1+aGYLHKpU4EAxcZMX6r41pdk7iR7dWg==
+  dependencies:
+    "@poppinss/utils" "^4.0.4"
+    nanoid "^3.3.4"
+
 "@adonisjs/lucid@^18.1.0":
   version "18.1.0"
   resolved "https://registry.yarnpkg.com/@adonisjs/lucid/-/lucid-18.1.0.tgz#93b4c8e91f26cc70afe0b14d46c611dbc8869035"
@@ -3131,6 +3139,11 @@ mustache@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/mustache/-/mustache-4.2.0.tgz#e5892324d60a12ec9c2a73359edca52972bf6f64"
   integrity sha512-71ippSywq5Yb7/tVYyGbkBggbU8H3u5Rz56fH60jGFgr8uHwxs+aSKeqmluIVzM0m0kB7xQjKS6qPfd0b2ZoqQ==
+
+nanoid@^3.3.4:
+  version "3.3.4"
+  resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-3.3.4.tgz#730b67e3cd09e2deacf03c027c81c9d9dbc5e8ab"
+  integrity sha512-MqBkQh/OHTS2egovRtLk45wEyNXwF+cokD+1YPf9u5VfJiRdAiRwB2froX5Co9Rh20xs4siNPm8naNotSD6RBw==
 
 nanomatch@^1.2.9:
   version "1.2.13"
