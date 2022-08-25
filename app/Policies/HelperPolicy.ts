@@ -24,7 +24,7 @@ export default class HelperPolicy extends BasePolicy {
 
 		const permissions: string[] = user.permissions.map((permission) => permission.identifier)
 
-		user.roles.forEach((role: Role) {
+		user.roles.forEach((role: Role) => {
 			role.permissions.forEach((permisson: Permission) => {
 				if (!permissions.includes(permisson.identifier)) {
 					permissions.push(permisson.identifier)
