@@ -46,4 +46,6 @@ Route.group(() => {
       Route.post('/register', 'SecuritiesController.store')
     }).prefix('/auth')
   }).middleware(['guest'])
+
+  Route.resource('/categories', 'CategoriesController')
 }).prefix('/v1')
