@@ -8,7 +8,7 @@ export default class extends BaseSchema {
       table.string('id').primary()
       table.string('label').notNullable()
       table.string('slug').notNullable().unique()
-      table.integer('power')
+      table.integer('power').defaultTo(1)
 
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })

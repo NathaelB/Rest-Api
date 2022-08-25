@@ -60,6 +60,6 @@ export default class PermissionGroupsController {
 		return response.send({
 			message: `Le Permission Group ${params.id} viens d'être anéhanti ^^`,
 			permissionGroup: permissionGroup
-	})
+		})
 	}
 }
