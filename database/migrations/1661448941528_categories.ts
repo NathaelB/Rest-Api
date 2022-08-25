@@ -11,10 +11,7 @@ export default class extends BaseSchema {
       table.string('description').notNullable()
       table.boolean('is_pin').notNullable().defaultTo(false)
       table.boolean('is_visible').notNullable().defaultTo(false)
-
-      /**
-       * Uses timestamptz for PostgreSQL and DATETIME2 for MSSQL
-       */
+      
       table.timestamp('created_at', { useTz: true })
       table.timestamp('updated_at', { useTz: true })
     })
